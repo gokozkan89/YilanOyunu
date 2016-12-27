@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 public class Kutu extends JLabel
 {
     public int mGenislik = 20;
-    public int mYon = Yonler.sag;
+    public int mYon = YONLER.SAG;
 
     Kutu()
     {
@@ -72,17 +72,17 @@ public class Kutu extends JLabel
 
     public void Hareket()
     {
-        if (mYon == Yonler.sag)
+        if (mYon == YONLER.SAG)
         {
             SagaGit();
         }
 
-        else if (mYon == Yonler.yukari)
+        else if (mYon == YONLER.YUKARI)
         {
             YukariGit();
         }
 
-        else if (mYon == Yonler.asagi)
+        else if (mYon == YONLER.ASAGI)
         {
             AssaGit();
         }
@@ -93,4 +93,18 @@ public class Kutu extends JLabel
         }
     }
 
+    public Kutu KutuOlustur()
+    {
+        Kutu K = new Kutu();
+
+        int X = getX();
+        int Y = getY();
+
+        K.setBounds(X,Y,mGenislik,mGenislik);
+        K.mYon = -mYon;
+        K.Hareket();
+        K.mYon = mYon;
+
+        return K;
+    }
 }

@@ -1,8 +1,8 @@
 
-public interface Yonler {
-    public static final int sag = 1;
-    public static final int sol = -1;
-    public static final int yukari = 2;
-    public static final int asagi = -2;
+public interface YONLER {
+    public static final int SAG = 1;
+    public static final int SOL = -1;
+    public static final int YUKARI = 2;
+    public static final int ASAGI = -2;
 
 }

@@ -2,7 +2,8 @@ import javafx.geometry.Pos;
 
 import javax.swing.*;
 import java.awt.*;
-//singelton tasarım deseni
+
+//Singelton tasarım deseni kullanıldı.
 public class Pencere extends JFrame
 {
 
