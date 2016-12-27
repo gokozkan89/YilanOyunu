@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 public class Kutu extends JLabel
 {
     public int mGenislik = 20;
+    public int mYon = Yonler.sag;
 
     Kutu()
     {
@@ -27,4 +28,69 @@ public class Kutu extends JLabel
         g2.fill(rect);
 
     }
+
+    public void SolaGit()
+    {
+        int PosX = getX();
+
+        int PosY = getY();
+
+        PosX -= mGenislik;
+        setBounds(PosX,PosY,mGenislik,mGenislik);
+    }
+
+    public void SagaGit()
+    {
+        int PosX = getX();
+
+        int PosY = getY();
+
+        PosX += mGenislik;
+        setBounds(PosX,PosY,mGenislik,mGenislik);
+
+    }
+
+    public void YukariGit()
+    {
+        int PosX = getX();
+
+        int PosY = getY();
+
+        PosY -= mGenislik;
+        setBounds(PosX,PosY,mGenislik,mGenislik);
+    }
+
+    public void AssaGit()
+    {
+        int PosX = getX();
+
+        int PosY = getY();
+
+        PosY += mGenislik;
+        setBounds(PosX,PosY,mGenislik,mGenislik);
+    }
+
+    public void Hareket()
+    {
+        if (mYon == Yonler.sag)
+        {
+            SagaGit();
+        }
+
+        else if (mYon == Yonler.yukari)
+        {
+            YukariGit();
+        }
+
+        else if (mYon == Yonler.asagi)
+        {
+            AssaGit();
+        }
+
+        else
+        {
+            SolaGit();
+        }
+    }
+
 }
