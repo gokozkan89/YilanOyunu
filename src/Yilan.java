@@ -15,7 +15,8 @@ public class Yilan extends JLabel
     public ArrayList<Kutu> Kutular = new ArrayList<Kutu>();
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g)
+    {
         super.paint(g);
 
         Graphics2D g2 = (Graphics2D)g;
@@ -29,6 +30,7 @@ public class Yilan extends JLabel
 
     Yilan()
     {
+
         addKeyListener(new KlavyeKontrol());
         setFocusable(true);
 
@@ -38,12 +40,57 @@ public class Yilan extends JLabel
 
         for (int i = 1 ;i<10;i++)
         {
-            Kutu K = Kutular.get(Kutular.size()-1).KutuOlustur();
-            Kutular.add(K);
-            add(K);
+            KuyrukEkle();
         }
 
         add(mHead);
+    }
+
+    public void KuyrukEkle()
+    {
+        Kutu K = Kutular.get(Kutular.size()-1).KutuOlustur();
+        Kutular.add(K);
+        add(K);
+    }
+
+    public void HepsiniYurut()
+    {
+        for (int i = Kutular.size()-1 ; i>0 ; i--)
+        {
+            Kutu Onceki = Kutular.get(i-1);
+            Kutu Sonraki = Kutular.get(i);
+
+            Sonraki.mYon = Onceki.mYon;
+            Kutular.get(i-1).Hareket();
+        }
+
+        /*
+        for (int i = 1 ; i<Kutular.size() ; i++)
+        {
+            Kutu Onceki = Kutular.get(i-1);
+            Kutu Sonraki = Kutular.get(i);
+
+            Sonraki.mYon = Onceki.mYon;
+            Kutular.get(i-1).Hareket();
+        }*/
+    }
+
+    public boolean CarpismaVarmi()
+    {
+        int Kalem = 10;
+        int genislik = getWidth();
+        int yukseklik = getHeight();
+
+        if (mHead.getX() <= 10)
+            return true;
+        else if(mHead.getX() >= genislik)
+            return true;
+        else if(mHead.getY() <= 10)
+            return true;
+        else if(mHead.getY() >= 590)
+            return true;
+        else
+            return false;
     }
 
     class KlavyeKontrol implements KeyListener
@@ -61,28 +108,21 @@ public class Yilan extends JLabel
             if (e.getKeyCode() == KeyEvent.VK_UP)
             {
                 Kutular.get(0).mYon = YONLER.YUKARI;
-                Kutular.get(1).mYon = YONLER.YUKARI;
             }
 
             if (e.getKeyCode() == KeyEvent.VK_LEFT)
             {
                 Kutular.get(0).mYon = YONLER.SOL;
-                Kutular.get(1).mYon = YONLER.SOL;
-
             }
 
             if (e.getKeyCode()== KeyEvent.VK_DOWN)
             {
                 Kutular.get(0).mYon = YONLER.ASAGI;
-                Kutular.get(1).mYon = YONLER.ASAGI;
-
-
             }
 
             if (e.getKeyCode()== KeyEvent.VK_RIGHT)
             {
                 Kutular.get(0).mYon = YONLER.SAG;
-                Kutular.get(1).mYon = YONLER.SAG;
             }
         }
 
@@ -99,11 +139,10 @@ public class Yilan extends JLabel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-          for (int i = 0; i<Kutular.size();i++)
-          {
-              Kutular.get(i).Hareket();
-          }
 
+            HepsiniYurut();
+            if(CarpismaVarmi())
+               mTimer.stop();
         }
     }
 }
