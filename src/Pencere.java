@@ -7,8 +7,8 @@ import java.awt.*;
 public class Pencere extends JFrame
 {
 
-    private int mGenislik = 600;
-    private int mYukseklik = 600;
+    private int mGenislik = 606;
+    private int mYukseklik = 629;
 
     private static Pencere mPencere = null;
 

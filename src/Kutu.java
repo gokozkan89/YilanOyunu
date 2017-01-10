@@ -8,9 +8,11 @@ public class Kutu extends JLabel
     public int mGenislik = 20;
     public int mYon = YONLER.SAG;
 
-    Kutu()
+    //İlk kutunun yani yılanın ilk parçasının ekranın ortasında oluşması sağlanacak...
+    public Kutu()
     {
-        setBounds(100,100,mGenislik,mGenislik);
+
+        setBounds(300,300,mGenislik,mGenislik);
     }
 
     @Override
